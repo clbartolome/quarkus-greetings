@@ -1,6 +1,6 @@
 # greetings-api
 
-Quarkus MicroService for online shop catalog.
+Quarkus MicroService to show greetings.
 
 Extensions installed:
 - RestEasy: `mvn quarkus:add-extension -Dextensions="resteasy-jackson"`
