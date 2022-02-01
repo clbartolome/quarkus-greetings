@@ -1,20 +1,30 @@
 package es.clb.quarkus;
 
-public class Greeting {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-  private Integer id;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
+@Entity
+public class Greeting extends PanacheEntityBase{
+
+  @Id @GeneratedValue private Long id;
   private String value;
 
-  public Greeting(Integer id, String value) {
+  public Greeting() {
+  }
+
+  public Greeting(Long id, String value) {
     this.id = id;
     this.value = value;
   }
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

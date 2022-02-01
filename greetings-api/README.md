@@ -7,6 +7,7 @@ Extensions installed:
 - Health: `mvn quarkus:add-extension -Dextensions="quarkus-smallrye-health"`
 - OpenApi: `mvn quarkus:add-extension -Dextensions="smallrye-openapi"`
 - Metrics: `mvn quarkus:add-extension -Dextensions="quarkus-smallrye-metrics"`
+- Postgresql (panache): `mvn quarkus:add-extension -Dextensions="quarkus-hibernate-orm-panache, quarkus-jdbc-postgresql, quarkus-jdbc-h2"`
 
 ! TIP: use `mvn quarkus:list-extensions` to get a list with all extensions.
 
@@ -23,7 +24,17 @@ API live documentation and other helpfull resources can be found at:
 
 ## Run Locally
 
-You can run your application in dev mode that enables live coding using:
+- Create PostgressDB:
+```sh
+docker run -d --name catalog \
+  -e POSTGRES_USER=develop \
+  -e POSTGRES_PASSWORD=develop \
+  -e POSTGRES_DB=catalog \
+  -p 5432:5432 \
+  postgres:10.5
+```
+
+- Run Application in development mode:
 ```shell script
 ./mvnw compile quarkus:dev
 ```
