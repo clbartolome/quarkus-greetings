@@ -29,7 +29,7 @@ API live documentation and other helpfull resources can be found at:
 docker run -d --name catalog \
   -e POSTGRES_USER=develop \
   -e POSTGRES_PASSWORD=develop \
-  -e POSTGRES_DB=catalog \
+  -e POSTGRES_DB=greeting-db \
   -p 5432:5432 \
   postgres:10.5
 ```
