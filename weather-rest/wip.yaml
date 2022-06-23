@@ -1,0 +1,50 @@
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  labels:
+    app: app-knat
+  name: knat
+spec:
+  template:
+    metadata:
+      labels:
+        app: app-knat
+        app.kubernetes.io/component: app-knat
+        app.kubernetes.io/instance: app-knat
+    spec:
+      containerConcurrency: 0
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/aa/app-nat:latest
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/live
+              port: null
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          name: app-knat
+          ports:
+            - containerPort: 8080
+              name: http1
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/ready
+              port: null
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          resources: 
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
