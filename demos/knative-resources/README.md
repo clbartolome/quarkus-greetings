@@ -381,3 +381,5 @@ Containers:
       memory:   50Mi
 ...
 ```
+
+> :heavy_exclamation_mark: NOTE: Label have priority over knative-service configuration
