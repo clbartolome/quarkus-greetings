@@ -279,18 +279,6 @@ for i in `seq 1 4`; do kn service update knat-$i -a queue.sidecar.serving.knativ
 
 After some tests these are the results:
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-lqy6{text-align:right;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-8zwo{font-style:italic;text-align:left;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr><th class="tg-amwm">Scenario 1</th><th class="tg-amwm">requests.cpu</th><th class="tg-amwm">limits.cpu</th><th class="tg-amwm">requests.memory</th><th class="tg-amwm">limits.memory</th><th class="tg-amwm">notes</th></tr>
