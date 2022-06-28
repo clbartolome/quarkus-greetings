@@ -1,0 +1,57 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: knat-app-template
+objects:
+- apiVersion: serving.knative.dev/v1
+  kind: Service
+  metadata:
+    labels:
+      app: ${APP_NAME}
+    name: ${APP_NAME}
+  spec:
+    template:
+      metadata:
+        labels:
+          app: ${APP_NAME}
+          app.kubernetes.io/component: ${APP_NAME}
+          app.kubernetes.io/instance: ${APP_NAME}
+      spec:
+        containerConcurrency: 0
+        containers:
+          - image: image-registry.openshift-image-registry.svc:5000/${APP_NAMESPACE}/app-nat:latest
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /q/health/live
+                port: null
+                scheme: HTTP
+              initialDelaySeconds: 0
+              periodSeconds: 30
+              successThreshold: 1
+              timeoutSeconds: 10
+            name: ${APP_NAME}
+            ports:
+              - containerPort: 8080
+                name: http1
+                protocol: TCP
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /q/health/ready
+                port: null
+                scheme: HTTP
+              initialDelaySeconds: 0
+              periodSeconds: 30
+              successThreshold: 1
+              timeoutSeconds: 10
+            resources: 
+              limits:
+                cpu: 200m
+                memory: 128Mi
+              requests:
+                cpu: 50m
+                memory: 50Mi
+parameters:
+- name: APP_NAMESPACE
+- name: APP_NAME
